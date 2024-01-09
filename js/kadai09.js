@@ -4,7 +4,7 @@ const slider = document.querySelectorAll("#slider li");
 
 let selector = 0;
 
-nextBtn.addEventListener("click", function () {
+function nextSlide() {
   selector++;
   if (selector >= slider.length) {
     selector = 0;
@@ -16,6 +16,10 @@ nextBtn.addEventListener("click", function () {
       slider[i].style.display = "none";
     }
   }
+}
+
+nextBtn.addEventListener("click", function () {
+  nextSlide();
   clearInterval(set);
 });
 
@@ -37,19 +41,7 @@ prevBtn.addEventListener("click", function () {
   clearInterval(set);
 });
 
-const set = setInterval(function () {
-  selector++;
-  if (selector >= slider.length) {
-    selector = 0;
-  }
-  for (let i = 0; i < slider.length; i++) {
-    if (i === selector) {
-      slider[i].style.display = "block";
-    } else if (i !== selector) {
-      slider[i].style.display = "none";
-    }
-  }
-}, 1000);
+const set = setInterval(nextSlide, 1000);
 
 // let currentIndex = 0;
 
